@@ -1,0 +1,5 @@
+*.log
+*.class
+node_modules/
+build/
+/target/
