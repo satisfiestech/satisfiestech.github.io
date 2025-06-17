@@ -2,7 +2,7 @@
 
 # 🛒 My eCommerce Website
 
-[https://satisfiestech.github.io/](https://satisfiestech.github.io/src/main/resources/static/index.html)
+[https://satisfiestech.github.io/](https://satisfiestech.github.io/site/index.html)
 
 A simple eCommerce frontend built with HTML, CSS, and JavaScript. This project includes product listings, a product detail page, a shopping cart, and checkout functionality.
 
