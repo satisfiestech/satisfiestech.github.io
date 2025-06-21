@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Products | My Store</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Basic Styling for the search bar */
+    header {
+      text-align: center;
+      padding: 20px;
+    }
+    .search-container {
+      margin: 10px 0;
+    }
+    .search-box {
+      padding: 8px 12px;
+      font-size: 1rem;
+      width: 60%;
+      max-width: 300px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .product-card {
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -13,25 +34,33 @@
       <a href="index.html">Home</a> |
       <a href="cart.html">Cart</a>
     </nav>
+    <div class="search-container">
+      <input
+        type="text"
+        id="searchInput"
+        class="search-box"
+        placeholder="Search products..."
+      />
+    </div>
   </header>
 
   <main class="product-grid">
     <div class="product-card">
-      <img src="images/i1.png" alt="Product 1">
+      <img src="images/i1.png" alt="Product 1" />
       <h2>Product 1</h2>
       <p>$19.99</p>
       <a href="product.html?id=1" class="btn">View Details</a>
     </div>
 
     <div class="product-card">
-      <img src="images/i2.png" alt="Product 2">
+      <img src="images/i2.png" alt="Product 2" />
       <h2>Product 2</h2>
       <p>$29.99</p>
       <a href="product.html?id=2" class="btn">View Details</a>
     </div>
 
     <div class="product-card">
-      <img src="images/i3.png" alt="Product 3">
+      <img src="images/i3.png" alt="Product 3" />
       <h2>Product 3</h2>
       <p>$39.99</p>
       <a href="product.html?id=3" class="btn">View Details</a>
@@ -42,5 +71,23 @@
   <footer>
     <p>&copy; 2025 My Store. All rights reserved.</p>
   </footer>
+
+  <script>
+    // SEARCH FUNCTIONALITY
+    const searchInput = document.getElementById('searchInput');
+    const productCards = document.querySelectorAll('.product-card');
+
+    searchInput.addEventListener('input', function (e) {
+      const query = e.target.value.toLowerCase();
+      productCards.forEach((card) => {
+        const title = card.querySelector('h2').textContent.toLowerCase();
+        if (title.includes(query)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
