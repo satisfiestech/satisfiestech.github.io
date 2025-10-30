@@ -65,6 +65,28 @@
       <p>$39.99</p>
       <a href="product.html?id=3" class="btn">View Details</a>
     </div>
+
+      <div class="product-card">
+          <h2>Add New Product</h2>
+          <form id="product-form">
+              <label>Name:</label><br>
+              <input type="text" id="name" required><br>
+
+              <label>Description:</label><br>
+              <textarea id="description" required></textarea><br>
+
+              <label>Price:</label><br>
+              <input type="number" id="price" step="0.01" required><br>
+
+              <label>Stock:</label><br>
+              <input type="number" id="stock" required><br>
+
+              <label>Image URL:</label><br>
+              <input type="text" id="imageUrl"><br><br>
+
+              <button type="submit">Add Product</button>
+          </form>
+      </div>
     <!-- Add more products as needed -->
   </main>
 
