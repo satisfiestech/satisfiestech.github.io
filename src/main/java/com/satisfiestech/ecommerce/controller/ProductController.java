@@ -1,4 +1,4 @@
-package controller;
+package com.satisfiestech.ecommerce.controller;
 
 import java.util.List;
 
@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import model.Product;
-import repository.ProductRepository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import java.util.Optional;
+import com.satisfiestech.ecommerce.model.Product;
+import com.satisfiestech.ecommerce.repository.ProductRepository;
 
 @RestController
 @RequestMapping("/api/products")
@@ -30,4 +32,12 @@ public class ProductController {
   public Product addProduct(@RequestBody Product product) {
       return productRepo.save(product);
   }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+        Optional<Product> product = productRepo.findById(id);
+        return product.map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 }

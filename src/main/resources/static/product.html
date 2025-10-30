@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | My Store</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        /* Minimal inline styling for demo purposes */
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header, footer { background: #333; color: #fff; padding: 1em; text-align: center; }
+        nav a { color: #fff; margin: 0 10px; text-decoration: none; }
+        main { padding: 2em; }
+        .product-detail { display: flex; gap: 2em; }
+        .product-detail img { max-width: 300px; border: 1px solid #ccc; }
+        .details h2 { margin-top: 0; }
+        .price { font-weight: bold; color: green; font-size: 1.2em; }
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Product Details</h1>
+    <nav>
+        <a href="index.html">Home</a> |
+        <a href="products.html">All Products</a> |
+        <a href="cart.html">Cart</a>
+    </nav>
+</header>
+
+<main>
+    <div class="product-detail" id="product-container">
+        <img id="product-image" src="" alt="Product Image" />
+        <div class="details">
+            <h2 id="product-name"></h2>
+            <p class="price" id="product-price"></p>
+            <p class="description" id="product-description"></p>
+            <button id="add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+    <p class="error" id="error-message" style="display:none;"></p>
+</main>
+
+<footer>
+    <p>&copy; 2025 My Store</p>
+</footer>
+
+<script>
+    // Get product ID from URL query ?id=1
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get('id');
+    const errorMessage = document.getElementById('error-message');
+    const container = document.getElementById('product-container');
+
+    if (!productId) {
+      container.style.display = 'none';
+      errorMessage.style.display = 'block';
+      errorMessage.textContent = 'No product ID specified.';
+    } else {
+      // Fetch product data from backend API
+      fetch(`http://localhost:8080/api/products/${productId}`)
+        .then(response => {
+          if (!response.ok) throw new Error('Product not found');
+          return response.json();
+        })
+        .then(product => {
+          document.getElementById('product-name').textContent = product.name;
+          document.getElementById('product-price').textContent = `$${product.price}`;
+          document.getElementById('product-description').textContent = product.description;
+          document.getElementById('product-image').src = product.imageUrl || 'images/i1.png';
+        })
+        .catch(err => {
+          container.style.display = 'none';
+          errorMessage.style.display = 'block';
+          errorMessage.textContent = 'Error loading product: ' + err.message;
+        });
+    }
+</script>
+</body>
+</html>

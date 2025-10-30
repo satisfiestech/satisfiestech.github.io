@@ -27,6 +27,29 @@
     }
   </style>
 </head>
+<script>
+    async function loadProducts() {
+      const res = await fetch("https://your-backend-domain.com/api/products");
+      const products = await res.json();
+      const container = document.getElementById("product-container");
+
+      products.forEach(p => {
+        container.innerHTML += `
+          <div class="product-card">
+            <img src="${p.imageUrl}" alt="${p.name}">
+            <h3>${p.name}</h3>
+            <p>${p.description}</p>
+            <span>$${p.price}</span>
+          </div>`;
+      });
+    }
+
+    loadProducts();
+</script>
+
+<div id="product-container"></div>
+
+
 <body>
   <header>
     <h1>Our Products</h1>
@@ -45,26 +68,6 @@
   </header>
 
   <main class="product-grid">
-    <div class="product-card">
-      <img src="images/i1.png" alt="Product 1" />
-      <h2>Product 1</h2>
-      <p>$19.99</p>
-      <a href="product.html?id=1" class="btn">View Details</a>
-    </div>
-
-    <div class="product-card">
-      <img src="images/i2.png" alt="Product 2" />
-      <h2>Product 2</h2>
-      <p>$29.99</p>
-      <a href="product.html?id=2" class="btn">View Details</a>
-    </div>
-
-    <div class="product-card">
-      <img src="images/i3.png" alt="Product 3" />
-      <h2>Product 3</h2>
-      <p>$39.99</p>
-      <a href="product.html?id=3" class="btn">View Details</a>
-    </div>
 
       <div class="product-card">
           <h2>Add New Product</h2>

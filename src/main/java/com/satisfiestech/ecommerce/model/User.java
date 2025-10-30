@@ -1,4 +1,4 @@
-package model;
+package com.satisfiestech.ecommerce.model;
 
 import jakarta.persistence.*;
 

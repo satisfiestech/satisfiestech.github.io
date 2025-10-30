@@ -1,10 +1,10 @@
-package controller;
+package com.satisfiestech.ecommerce.controller;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import model.User;
-import repository.UserRepository;
+import com.satisfiestech.ecommerce.model.User;
+import com.satisfiestech.ecommerce.repository.UserRepository;
 
 @RestController
 @RequestMapping("/api/users")
