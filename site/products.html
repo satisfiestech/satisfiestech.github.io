@@ -84,8 +84,16 @@
               <label>Stock:</label><br>
               <input type="number" id="stock" required><br>
 
-              <label>Image URL:</label><br>
-              <input type="text" id="imageUrl"><br><br>
+              <label>Image:</label><br>
+
+              <!-- Image URL input -->
+              <input type="text" id="imageUrl" placeholder="Enter image URL">
+
+              <!-- OR upload file -->
+              <input type="file" id="imageFile" accept="image/*">
+
+              <button type="button" id="uploadBtn">Upload</button><br><br>
+
 
               <button type="submit">Add Product</button>
           </form>
