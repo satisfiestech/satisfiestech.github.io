@@ -42,4 +42,4 @@ A simple eCommerce frontend built with HTML, CSS, and JavaScript. This project i
 
 ## 📄 License
 
-This project is open-source and available under the MIT License.
+This project is open-source. 
