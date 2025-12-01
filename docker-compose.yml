@@ -1,31 +1,14 @@
 version: "3.9"
 
 services:
-  postgres:
-    image: postgres:16
-    container_name: my_postgres
-    restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: JqyOg13TEBncgF2Z
-      POSTGRES_DB: ecommerce_db
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
   app:
-    build: .
-    container_name: springboot_app
-    depends_on:
-      - postgres
+    image: satisfiestechgithubio-app:latest
     ports:
       - "9090:9090"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db.jpfimgzekvkgatlwysxq.supabase.co:5432/postgres?sslmode=require
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: JqyOg13TEBncgF2Z
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
-
-volumes:
-  postgres_data:
