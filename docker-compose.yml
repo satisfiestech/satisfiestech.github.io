@@ -1,14 +1,1 @@
-version: "3.9"
 
-services:
-  app:
-    image: satisfiestechgithubio-app:latest
-    ports:
-      - "9090:9090"
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db.jpfimgzekvkgatlwysxq.supabase.co:5432/postgres?sslmode=require
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: JqyOg13TEBncgF2Z
