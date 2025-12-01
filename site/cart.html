@@ -2,48 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Cart | My Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart | SatisfiesTech Store</title>
   <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header>
-    <h1>Your Shopping Cart</h1>
-    <nav>
-      <a href="index.html">Home</a> |
-      <a href="products.html">Products</a> |
-      <a href="checkout.html">Checkout</a>
-    </nav>
+    <div class="header-content">
+      <h1>🛒 SatisfiesTech Store</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <table>
-      <thead>
-        <tr>
-          <th>Product</th>
-          <th>Qty</th>
-          <th>Price</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody id="cart-items">
-        <tr>
-          <td>Example Product</td>
-          <td>2</td>
-          <td>$19.99</td>
-          <td>$39.98</td>
-        </tr>
-        <!-- More items will be dynamically added here -->
-      </tbody>
-    </table>
+    <div class="container" style="padding: 2rem 1rem;">
+      <h1 style="text-align: center; margin-bottom: 2rem; color: #1e293b;">🛍️ Your Shopping Cart</h1>
+      
+      <div class="cart-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="cart-items">
+            <tr>
+              <td>Premium Headphones</td>
+              <td>1</td>
+              <td>$199.99</td>
+              <td>$199.99</td>
+              <td><button class="btn btn-secondary" style="padding: 0.5rem;">Remove</button></td>
+            </tr>
+          </tbody>
+        </table>
 
-    <div class="cart-summary">
-      <p><strong>Subtotal:</strong> $39.98</p>
-      <a href="checkout.html" class="btn">Proceed to Checkout</a>
+        <div class="cart-summary">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <p style="font-size: 1.2rem; margin-bottom: 0.5rem;"><strong>Subtotal: $199.99</strong></p>
+              <p style="color: #64748b; font-size: 0.9rem;">Shipping calculated at checkout</p>
+            </div>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <a href="products.html" class="btn btn-secondary">Continue Shopping</a>
+              <a href="checkout.html" class="btn">Proceed to Checkout</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
   <footer>
-    <p>&copy; 2025 My Store</p>
+    <p>&copy; 2025 SatisfiesTech Store. All rights reserved.</p>
   </footer>
 </body>
 </html>

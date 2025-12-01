@@ -1,157 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Our Products | My Store</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        header, footer { background: #007bff; color: white; padding: 1em; text-align: center; }
-        nav a { color: white; margin: 0 10px; text-decoration: none; }
-        .product-list { display: flex; flex-wrap: wrap; gap: 1em; padding: 1em; }
-        .product-card { border: 1px solid #ccc; padding: 1em; width: 220px; box-sizing: border-box; }
-        .product-card img {
-          width: 200px;
-          height: 150px;
-          object-fit: cover;
-          border-radius: 4px;
-          display: block;
-          margin-bottom: 0.5em;
-        }
-        .product-name { font-weight: bold; margin: 0.5em 0; }
-        .product-price { color: green; margin: 0.5em 0; }
-        label, input, textarea, button { width: 100%; box-sizing: border-box; }
-        input, textarea { margin-bottom: 0.5em; }
-        button { cursor: pointer; background-color: #007bff; color: white; border: none; padding: 0.5em; }
-        button:hover { background-color: #0056b3; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products | SatisfiesTech Store</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-
-<header>
-    <h1>Our Products</h1>
-    <nav>
-        <a href="index.html">Home</a> |
+  <header>
+    <div class="header-content">
+      <h1>🛒 SatisfiesTech Store</h1>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <nav id="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
         <a href="cart.html">Cart</a>
-    </nav>
-</header>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </div>
+  </header>
 
-<input type="text" id="search" placeholder="Search products..." />
-
-<div class="product-list" id="productList">
-
-    <!-- Add New Product form as the first card -->
-    <div class="product-card">
-        <h2>Add New Product</h2>
-        <form id="product-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" required>
-
-            <label for="description">Description:</label>
-            <textarea id="description" required></textarea>
-
-            <label for="price">Price:</label>
-            <input type="number" id="price" step="0.01" required>
-
-            <label for="stock">Stock:</label>
-            <input type="number" id="stock" required>
-
-            <label for="imageUrl">Image URL:</label>
-            <input type="text" id="imageUrl">
-
-            <button type="submit">Add Product</button>
-        </form>
+  <main>
+    <div class="container" style="padding: 2rem 1rem; text-align: center;">
+      <h1 style="margin-bottom: 1rem; color: #1e293b;">Our Products</h1>
+      <p style="color: #64748b; margin-bottom: 2rem;">Discover our carefully curated selection of premium products</p>
+      
+      <div class="search-container">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-box"
+          placeholder="🔍 Search products..."
+        />
+      </div>
     </div>
 
-    <!-- Products will be dynamically inserted here -->
+    <div class="product-grid" id="product-container">
+      <!-- Sample Products -->
+      <div class="product-card">
+        <img src="images/i1.png" alt="Premium Headphones">
+        <h3>Premium Headphones</h3>
+        <p>High-quality wireless headphones with noise cancellation</p>
+        <div class="price">$199.99</div>
+        <button onclick="addToCart('headphones')">Add to Cart</button>
+      </div>
 
-</div>
+      <div class="product-card">
+        <img src="images/i2.png" alt="Smart Watch">
+        <h3>Smart Watch</h3>
+        <p>Feature-rich smartwatch with health monitoring</p>
+        <div class="price">$299.99</div>
+        <button onclick="addToCart('smartwatch')">Add to Cart</button>
+      </div>
 
-<footer>
-    <p>&copy; 2025 My Store. All rights reserved.</p>
-</footer>
+      <div class="product-card">
+        <img src="images/i3.png" alt="Wireless Speaker">
+        <h3>Wireless Speaker</h3>
+        <p>Portable Bluetooth speaker with premium sound quality</p>
+        <div class="price">$89.99</div>
+        <button onclick="addToCart('speaker')">Add to Cart</button>
+      </div>
 
-<script>
-    async function fetchProducts() {
-      try {
-        const response = await fetch('/api/products');
-        if (!response.ok) throw new Error('Network response was not ok');
-        const products = await response.json();
+      <div class="product-card">
+        <img src="images/i4.png" alt="Gaming Mouse">
+        <h3>Gaming Mouse</h3>
+        <p>Precision gaming mouse with customizable RGB lighting</p>
+        <div class="price">$79.99</div>
+        <button onclick="addToCart('mouse')">Add to Cart</button>
+      </div>
 
-        const productList = document.getElementById('productList');
+      <!-- Admin Product Form -->
+      <div class="product-card" style="background: #f8fafc; border: 2px dashed #cbd5e1;">
+        <h3 style="color: #64748b;">➕ Add New Product</h3>
+        <form id="product-form" style="text-align: left; padding: 0; box-shadow: none; background: transparent;">
+          <label>Product Name:</label>
+          <input type="text" id="name" required>
 
-        // Remove previously rendered product cards (except the first form card)
-        // So remove all children except the first one
-        while (productList.children.length > 1) {
-          productList.removeChild(productList.lastChild);
+          <label>Description:</label>
+          <textarea id="description" rows="3" required></textarea>
+
+          <label>Price ($):</label>
+          <input type="number" id="price" step="0.01" required>
+
+          <label>Stock Quantity:</label>
+          <input type="number" id="stock" required>
+
+          <label>Image URL:</label>
+          <input type="url" id="imageUrl" placeholder="https://example.com/image.jpg">
+
+          <button type="submit" style="width: 100%; margin-top: 1rem;">Add Product</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SatisfiesTech Store. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const productCards = document.querySelectorAll('.product-card');
+
+    searchInput.addEventListener('input', function (e) {
+      const query = e.target.value.toLowerCase();
+      productCards.forEach((card) => {
+        const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+        const description = card.querySelector('p')?.textContent.toLowerCase() || '';
+        if (title.includes(query) || description.includes(query)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
         }
-
-        products.forEach(product => {
-          const productCard = document.createElement('div');
-          productCard.className = 'product-card';
-
-          productCard.innerHTML = `
-            <img src="${product.imageUrl}" alt="${product.name}" />
-            <div class="product-name">${product.name}</div>
-            <div class="product-price">$${product.price.toFixed(2)}</div>
-            <div class="product-description">${product.description}</div>
-            <button onclick="addToCart(${product.id})">Add to Cart</button>
-          `;
-
-          productList.appendChild(productCard);
-        });
-      } catch (error) {
-        console.error('Failed to fetch products:', error);
-      }
-    }
-
-    function addToCart(productId) {
-      alert('Add to Cart clicked for product ID ' + productId);
-      // Implement your add to cart logic here
-    }
-
-    // Handle new product form submission
-    document.getElementById('product-form').addEventListener('submit', async function(e) {
-      e.preventDefault();
-
-      const newProduct = {
-        name: document.getElementById('name').value.trim(),
-        description: document.getElementById('description').value.trim(),
-        price: parseFloat(document.getElementById('price').value),
-        stock: parseInt(document.getElementById('stock').value),
-        imageUrl: document.getElementById('imageUrl').value.trim()
-      };
-
-      try {
-        const response = await fetch('/api/products', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newProduct)
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to add product');
-        }
-
-        alert('Product added successfully!');
-        this.reset();  // clear form
-        fetchProducts(); // refresh product list
-      } catch (error) {
-        alert('Error: ' + error.message);
-      }
-    });
-
-    document.getElementById('search').addEventListener('input', function() {
-      const query = this.value.toLowerCase();
-      const cards = document.querySelectorAll('.product-card:not(:first-child)'); // exclude first form card
-      cards.forEach(card => {
-        const name = card.querySelector('.product-name').textContent.toLowerCase();
-        card.style.display = name.includes(query) ? '' : 'none';
       });
     });
 
-    // Load products when page loads
-    window.onload = fetchProducts;
-</script>
+    // Add to cart functionality
+    function addToCart(productId) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      cart.push({
+        id: productId,
+        name: event.target.parentElement.querySelector('h3').textContent,
+        price: event.target.parentElement.querySelector('.price').textContent,
+        quantity: 1
+      });
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert('Product added to cart!');
+    }
 
+    // Product form submission
+    document.getElementById('product-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const description = document.getElementById('description').value;
+      const price = document.getElementById('price').value;
+      const stock = document.getElementById('stock').value;
+      const imageUrl = document.getElementById('imageUrl').value || 'images/i1.png';
+      
+      const productCard = document.createElement('div');
+      productCard.className = 'product-card';
+      productCard.innerHTML = `
+        <img src="${imageUrl}" alt="${name}">
+        <h3>${name}</h3>
+        <p>${description}</p>
+        <div class="price">$${price}</div>
+        <button onclick="addToCart('${name.toLowerCase().replace(/\s+/g, '-')}')">Add to Cart</button>
+      `;
+      
+      const formCard = document.querySelector('.product-card[style*="dashed"]');
+      formCard.parentNode.insertBefore(productCard, formCard);
+      
+      this.reset();
+      alert('Product added successfully!');
+    });
+
+    // Load products from API (if backend is available)
+    async function loadProducts() {
+      try {
+        const response = await fetch('/api/products');
+        if (response.ok) {
+          const products = await response.json();
+          // Handle API products here
+        }
+      } catch (error) {
+        console.log('Backend not available, using static products');
+      }
+    }
+
+    loadProducts();
+    
+    // Mobile menu toggle
+    function toggleMenu() {
+      const nav = document.getElementById('nav-menu');
+      nav.classList.toggle('active');
+    }
+  </script>
 </body>
 </html>

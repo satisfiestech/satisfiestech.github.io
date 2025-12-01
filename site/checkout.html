@@ -2,36 +2,137 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Checkout | My Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | SatisfiesTech Store</title>
   <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header>
-    <h1>Checkout</h1>
-    <nav>
-      <a href="index.html">Home</a> |
-      <a href="cart.html">Back to Cart</a>
-    </nav>
+    <div class="header-content">
+      <h1>🛒 SatisfiesTech Store</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <form id="checkout-form">
-      <h2>Billing Information</h2>
-      <label for="name">Full Name:</label><br>
-      <input type="text" id="name" required><br><br>
-
-      <label for="address">Address:</label><br>
-      <input type="text" id="address" required><br><br>
-
-      <label for="card">Card Number:</label><br>
-      <input type="text" id="card" maxlength="16" required><br><br>
-
-      <button type="submit">Place Order</button>
-    </form>
+    <div class="container" style="padding: 2rem 1rem;">
+      <h1 style="text-align: center; margin-bottom: 2rem; color: #1e293b;">💳 Secure Checkout</h1>
+      
+      <form id="checkout-form">
+        <h2 style="margin-bottom: 1.5rem; color: #374151;">📝 Billing Information</h2>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div>
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" required>
+          </div>
+          <div>
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" required>
+          </div>
+        </div>
+        
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required>
+        
+        <label for="address">Street Address</label>
+        <input type="text" id="address" required>
+        
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div>
+            <label for="city">City</label>
+            <input type="text" id="city" required>
+          </div>
+          <div>
+            <label for="state">State</label>
+            <input type="text" id="state" required>
+          </div>
+          <div>
+            <label for="zip">ZIP Code</label>
+            <input type="text" id="zip" required>
+          </div>
+        </div>
+        
+        <h3 style="margin: 2rem 0 1rem; color: #374151;">💳 Payment Information</h3>
+        
+        <label for="card">Card Number</label>
+        <input type="text" id="card" placeholder="1234 5678 9012 3456" maxlength="19" required>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div>
+            <label for="expiry">Expiry Date</label>
+            <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" required>
+          </div>
+          <div>
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" placeholder="123" maxlength="3" required>
+          </div>
+        </div>
+        
+        <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+          <h4 style="margin-bottom: 1rem; color: #374151;">Order Summary</h4>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <span>Subtotal:</span>
+            <span>$199.99</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <span>Shipping:</span>
+            <span>Free</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <span>Tax:</span>
+            <span>$16.00</span>
+          </div>
+          <hr style="margin: 1rem 0; border: none; border-top: 2px solid #e2e8f0;">
+          <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.1rem;">
+            <span>Total:</span>
+            <span>$215.99</span>
+          </div>
+        </div>
+        
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="cart.html" class="btn btn-secondary">Back to Cart</a>
+          <button type="submit" style="padding: 1rem 2rem;">🔒 Place Order</button>
+        </div>
+      </form>
+    </div>
   </main>
 
   <footer>
-    <p>&copy; 2025 My Store</p>
+    <p>&copy; 2025 SatisfiesTech Store. All rights reserved.</p>
   </footer>
+  
+  <script>
+    // Format card number input
+    document.getElementById('card').addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+      let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+      e.target.value = formattedValue;
+    });
+    
+    // Format expiry date
+    document.getElementById('expiry').addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length >= 2) {
+        value = value.substring(0,2) + '/' + value.substring(2,4);
+      }
+      e.target.value = value;
+    });
+    
+    // Form submission
+    document.getElementById('checkout-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Order placed successfully! Thank you for your purchase.');
+      // Redirect to success page or home
+      window.location.href = 'index.html';
+    });
+  </script>
 </body>
 </html>
