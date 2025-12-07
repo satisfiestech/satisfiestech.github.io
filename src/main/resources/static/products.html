@@ -134,7 +134,7 @@
     }
 
     // Product form submission
-    document.getElementById('product-form').addEventListener('submit', function(e) {
+    document.getElementById('product-form').addEventListener('submit', async function(e) {
       e.preventDefault();
 
       const name = document.getElementById('name').value;
@@ -143,33 +143,53 @@
       const stock = document.getElementById('stock').value;
       const imageUrl = document.getElementById('imageUrl').value || 'images/i1.png';
 
-      const productCard = document.createElement('div');
-      productCard.className = 'product-card';
-      productCard.innerHTML = `
-        <img src="${imageUrl}" alt="${name}">
-        <h3>${name}</h3>
-        <p>${description}</p>
-        <div class="price">$${price}</div>
-        <button onclick="addToCart('${name.toLowerCase().replace(/\s+/g, '-')}')">Add to Cart</button>
-      `;
-
-      const formCard = document.querySelector('.product-card[style*="dashed"]');
-      formCard.parentNode.insertBefore(productCard, formCard);
-
-      this.reset();
-      alert('Product added successfully!');
+      try {
+        const response = await fetch('/api/products', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, description, price: parseFloat(price), stock: parseInt(stock), imageUrl })
+        });
+        
+        if (response.ok) {
+          alert('Product added successfully!');
+          this.reset();
+          loadProducts();
+        } else {
+          alert('Failed to add product');
+        }
+      } catch (error) {
+        alert('Error: ' + error.message);
+      }
     });
 
-    // Load products from API (if backend is available)
+    // Load products from API
     async function loadProducts() {
       try {
         const response = await fetch('/api/products');
         if (response.ok) {
           const products = await response.json();
-          // Handle API products here
+          const container = document.getElementById('product-container');
+          const formCard = document.querySelector('.product-card[style*="dashed"]');
+          
+          container.innerHTML = '';
+          
+          products.forEach(p => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+              <img src="${p.imageUrl}" alt="${p.name}">
+              <h3>${p.name}</h3>
+              <p>${p.description}</p>
+              <div class="price">$${p.price}</div>
+              <button onclick="addToCart('${p.id}')">Add to Cart</button>
+            `;
+            container.appendChild(card);
+          });
+          
+          if (formCard) container.appendChild(formCard);
         }
       } catch (error) {
-        console.log('Backend not available, using static products');
+        console.log('Backend not available');
       }
     }
 

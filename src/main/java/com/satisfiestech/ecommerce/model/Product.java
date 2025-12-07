@@ -20,6 +20,8 @@ public class Product {
 
     @Column(name = "image_url")
     private String imageUrl;
+    
+    private Integer stock;
 
     // Getters and setters
     public Long getId() { return id; }
@@ -36,4 +38,7 @@ public class Product {
 
     public String getImageUrl() { return imageUrl; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    
+    public Integer getStock() { return stock; }
+    public void setStock(Integer stock) { this.stock = stock; }
 }
