@@ -16,6 +16,7 @@ import com.satisfiestech.ecommerce.repository.ProductRepository;
 
 @RestController
 @RequestMapping("/api/products")
+@org.springframework.web.bind.annotation.CrossOrigin(origins = "*")
 public class ProductController {
   @Autowired private ProductRepository productRepo;
   
