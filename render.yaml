@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: satisfiestech-api
+    env: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: DATABASE_URL
+        value: jdbc:postgresql://db.jpfimgzekvkgatlwysxq.supabase.co:5432/postgres?sslmode=require
+      - key: DATABASE_USERNAME
+        value: postgres
+      - key: DATABASE_PASSWORD
+        sync: false
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: SERVER_PORT
+        value: 10000
+      - key: CORS_ORIGINS
+        value: https://satisfiestech.github.io
+      - key: SHOW_SQL
+        value: false

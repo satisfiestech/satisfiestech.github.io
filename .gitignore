@@ -3,3 +3,8 @@
 node_modules/
 build/
 /target/
+
+# Environment variables with sensitive data
+.env
+*.env
+!.env.example

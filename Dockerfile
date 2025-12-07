@@ -1,15 +1,14 @@
-# Step 1: Use official JDK image
+# Build stage
 FROM maven:3.9.6-eclipse-temurin-17 AS build
-
-# Step 2: Set app directory
 WORKDIR /app
 COPY pom.xml .
-# Step 3: Copy Maven/Gradle build output (JAR)
-COPY target/*.jar app.jar
+COPY src ./src
 RUN mvn clean package -DskipTests
-# Step 4: Expose Spring Boot default port
-ENV PORT=9090
-EXPOSE 9090
 
-# Step 5: Run the jar
+# Run stage
+FROM eclipse-temurin:17-jdk-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+EXPOSE 10000
+ENV SERVER_PORT=10000
 ENTRYPOINT ["java", "-jar", "app.jar"]
