@@ -26,7 +26,7 @@
     <div class="container" style="padding: 2rem 1rem; text-align: center;">
       <h1 style="margin-bottom: 1rem; color: #1e293b;">Our Products</h1>
       <p style="color: #64748b; margin-bottom: 2rem;">Discover our carefully curated selection of premium products</p>
-      
+
       <div class="search-container">
         <input
           type="text"
@@ -121,14 +121,14 @@
     // Add to cart functionality
     function addToCart(productId) {
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      
+
       cart.push({
         id: productId,
         name: event.target.parentElement.querySelector('h3').textContent,
         price: event.target.parentElement.querySelector('.price').textContent,
         quantity: 1
       });
-      
+
       localStorage.setItem('cart', JSON.stringify(cart));
       alert('Product added to cart!');
     }
@@ -136,13 +136,13 @@
     // Product form submission
     document.getElementById('product-form').addEventListener('submit', function(e) {
       e.preventDefault();
-      
+
       const name = document.getElementById('name').value;
       const description = document.getElementById('description').value;
       const price = document.getElementById('price').value;
       const stock = document.getElementById('stock').value;
       const imageUrl = document.getElementById('imageUrl').value || 'images/i1.png';
-      
+
       const productCard = document.createElement('div');
       productCard.className = 'product-card';
       productCard.innerHTML = `
@@ -152,10 +152,10 @@
         <div class="price">$${price}</div>
         <button onclick="addToCart('${name.toLowerCase().replace(/\s+/g, '-')}')">Add to Cart</button>
       `;
-      
+
       const formCard = document.querySelector('.product-card[style*="dashed"]');
       formCard.parentNode.insertBefore(productCard, formCard);
-      
+
       this.reset();
       alert('Product added successfully!');
     });
@@ -174,7 +174,7 @@
     }
 
     loadProducts();
-    
+
     // Mobile menu toggle
     function toggleMenu() {
       const nav = document.getElementById('nav-menu');
