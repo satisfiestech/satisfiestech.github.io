@@ -6,7 +6,7 @@ services:
     dockerContext: .
     envVars:
       - key: DATABASE_URL
-        value: jdbc:postgresql://dpg-d4qr03u3jp1c739mjicg-a/satisfiestech_db
+        value: jdbc:postgresql://dpg-d4qr03u3jp1c739mjicg-a.oregon-postgres.render.com:5432/satisfiestech_db
       - key: DATABASE_USERNAME
         value: satisfiestech_db_user
       - key: DATABASE_PASSWORD
