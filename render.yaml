@@ -6,11 +6,11 @@ services:
     dockerContext: .
     envVars:
       - key: DATABASE_URL
-        value: jdbc:postgresql://db.jpfimgzekvkgatlwysxq.supabase.co:5432/postgres?sslmode=require
+        value: jdbc:postgresql://dpg-d4qr03u3jp1c739mjicg-a/satisfiestech_db
       - key: DATABASE_USERNAME
-        value: postgres
+        value: satisfiestech_db_user
       - key: DATABASE_PASSWORD
-        value: JqyOg13TEBncgF2Z
+        value: dy3onp1dsH0OcK7YTCMWmBQZ3H7LyK1Z
       - key: ADMIN_USERNAME
         value: admin
       - key: ADMIN_PASSWORD
