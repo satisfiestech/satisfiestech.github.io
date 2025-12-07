@@ -11,7 +11,8 @@
   <header>
     <div class="header-content">
       <h1>🛒 SatisfiesTech Store</h1>
-      <nav>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <nav id="nav-menu">
         <a href="index.html">Home</a>
         <a href="products.html">Products</a>
         <a href="cart.html">Cart</a>
@@ -112,6 +113,10 @@
     function buyNow() {
       addToCart();
       window.location.href = 'checkout.html';
+    }
+    
+    function toggleMenu() {
+      document.getElementById('nav-menu').classList.toggle('active');
     }
   </script>
 </body>

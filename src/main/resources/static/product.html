@@ -1,80 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details | My Store</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <style>
-        /* Minimal inline styling for demo purposes */
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        header, footer { background: #333; color: #fff; padding: 1em; text-align: center; }
-        nav a { color: #fff; margin: 0 10px; text-decoration: none; }
-        main { padding: 2em; }
-        .product-detail { display: flex; gap: 2em; }
-        .product-detail img { max-width: 300px; border: 1px solid #ccc; }
-        .details h2 { margin-top: 0; }
-        .price { font-weight: bold; color: green; font-size: 1.2em; }
-        .error { color: red; font-weight: bold; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Premium Headphones | SatisfiesTech Store</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-<header>
-    <h1>Product Details</h1>
-    <nav>
-        <a href="index.html">Home</a> |
-        <a href="products.html">All Products</a> |
+  <header>
+    <div class="header-content">
+      <h1>🛒 SatisfiesTech Store</h1>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <nav id="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
         <a href="cart.html">Cart</a>
-    </nav>
-</header>
-
-<main>
-    <div class="product-detail" id="product-container">
-        <img id="product-image" src="" alt="Product Image" />
-        <div class="details">
-            <h2 id="product-name"></h2>
-            <p class="price" id="product-price"></p>
-            <p class="description" id="product-description"></p>
-            <button id="add-to-cart">Add to Cart</button>
-        </div>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </nav>
     </div>
-    <p class="error" id="error-message" style="display:none;"></p>
-</main>
+  </header>
 
-<footer>
-    <p>&copy; 2025 My Store</p>
-</footer>
+  <main>
+    <div class="container" style="padding: 2rem 1rem;">
+      <nav style="margin-bottom: 2rem; font-size: 0.9rem; color: #64748b;">
+        <a href="index.html" style="color: #667eea;">Home</a> > 
+        <a href="products.html" style="color: #667eea;">Products</a> > 
+        <span>Premium Headphones</span>
+      </nav>
+      
+      <div class="product-detail">
+        <img src="images/i1.png" alt="Premium Headphones" />
+        <div class="details">
+          <h1>Premium Wireless Headphones</h1>
+          <div class="price">$199.99</div>
+          
+          <div style="margin: 1.5rem 0;">
+            <span style="background: #10b981; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">✓ In Stock</span>
+          </div>
+          
+          <div class="description">
+            <h3 style="margin-bottom: 1rem; color: #374151;">Product Features</h3>
+            <ul style="text-align: left; margin-bottom: 1.5rem; line-height: 1.8;">
+              <li>🎧 Premium noise-canceling technology</li>
+              <li>🔋 30-hour battery life with quick charge</li>
+              <li>📱 Bluetooth 5.0 connectivity</li>
+              <li>🎵 High-fidelity audio drivers</li>
+              <li>🛡️ 2-year warranty included</li>
+            </ul>
+            
+            <p style="color: #64748b; margin-bottom: 1.5rem;">
+              Experience premium audio quality with our flagship wireless headphones. 
+              Featuring advanced noise cancellation, superior comfort, and exceptional 
+              battery life for all-day listening.
+            </p>
+          </div>
+          
+          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap;">
+            <label style="font-weight: 600;">Quantity:</label>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <button onclick="changeQuantity(-1)" style="padding: 0.5rem; width: 40px;">-</button>
+              <span id="quantity" style="padding: 0.5rem 1rem; border: 2px solid #e5e7eb; border-radius: 6px; min-width: 50px; text-align: center;">1</span>
+              <button onclick="changeQuantity(1)" style="padding: 0.5rem; width: 40px;">+</button>
+            </div>
+          </div>
+          
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <button onclick="addToCart()" style="flex: 1; min-width: 200px; padding: 1rem;">🛍️ Add to Cart</button>
+            <button onclick="buyNow()" class="btn btn-secondary" style="flex: 1; min-width: 200px; padding: 1rem;">⚡ Buy Now</button>
+          </div>
+          
+          <div style="margin-top: 2rem; padding: 1.5rem; background: #f8fafc; border-radius: 8px;">
+            <h4 style="margin-bottom: 1rem; color: #374151;">🚚 Shipping & Returns</h4>
+            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 0.5rem;">• Free shipping on orders over $50</p>
+            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 0.5rem;">• 30-day return policy</p>
+            <p style="font-size: 0.9rem; color: #64748b;">• 1-2 business days processing time</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
-<script>
-    // Get product ID from URL query ?id=1
-    const params = new URLSearchParams(window.location.search);
-    const productId = params.get('id');
-    const errorMessage = document.getElementById('error-message');
-    const container = document.getElementById('product-container');
-
-    if (!productId) {
-      container.style.display = 'none';
-      errorMessage.style.display = 'block';
-      errorMessage.textContent = 'No product ID specified.';
-    } else {
-      // Fetch product data from backend API
-      fetch(`http://localhost:8080/api/products/${productId}`)
-        .then(response => {
-          if (!response.ok) throw new Error('Product not found');
-          return response.json();
-        })
-        .then(product => {
-          document.getElementById('product-name').textContent = product.name;
-          document.getElementById('product-price').textContent = `$${product.price}`;
-          document.getElementById('product-description').textContent = product.description;
-          document.getElementById('product-image').src = product.imageUrl || 'images/i1.png';
-        })
-        .catch(err => {
-          container.style.display = 'none';
-          errorMessage.style.display = 'block';
-          errorMessage.textContent = 'Error loading product: ' + err.message;
-        });
+  <footer>
+    <p>&copy; 2025 SatisfiesTech Store. All rights reserved.</p>
+  </footer>
+  
+  <script>
+    let currentQuantity = 1;
+    
+    function changeQuantity(change) {
+      currentQuantity = Math.max(1, currentQuantity + change);
+      document.getElementById('quantity').textContent = currentQuantity;
     }
-</script>
+    
+    function addToCart() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      for (let i = 0; i < currentQuantity; i++) {
+        cart.push({
+          id: 'premium-headphones',
+          name: 'Premium Wireless Headphones',
+          price: '$199.99',
+          quantity: 1
+        });
+      }
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`Added ${currentQuantity} item(s) to cart!`);
+    }
+    
+    function buyNow() {
+      addToCart();
+      window.location.href = 'checkout.html';
+    }
+    
+    function toggleMenu() {
+      document.getElementById('nav-menu').classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
