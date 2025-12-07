@@ -11,7 +11,8 @@
   <header>
     <div class="header-content">
       <h1>🛒 SatisfiesTech Store</h1>
-      <nav>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <nav id="nav-menu">
         <a href="index.html">Home</a>
         <a href="products.html">Products</a>
         <a href="cart.html">Cart</a>
@@ -26,36 +27,39 @@
       <h1 style="text-align: center; margin-bottom: 2rem; color: #1e293b;">🛍️ Your Shopping Cart</h1>
       
       <div class="cart-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Total</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="cart-items">
-            <tr>
-              <td>Premium Headphones</td>
-              <td>1</td>
-              <td>$199.99</td>
-              <td>$199.99</td>
-              <td><button class="btn btn-secondary" style="padding: 0.5rem;">Remove</button></td>
-            </tr>
-          </tbody>
-        </table>
+        <div id="cart-empty" style="text-align: center; padding: 3rem; display: none;">
+          <div style="font-size: 4rem; margin-bottom: 1rem;">🛒</div>
+          <h2 style="color: #64748b; margin-bottom: 1rem;">Your cart is empty</h2>
+          <p style="color: #94a3b8; margin-bottom: 2rem;">Add some products to get started!</p>
+          <a href="products.html" class="btn">Continue Shopping</a>
+        </div>
 
-        <div class="cart-summary">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-            <div>
-              <p style="font-size: 1.2rem; margin-bottom: 0.5rem;"><strong>Subtotal: $199.99</strong></p>
-              <p style="color: #64748b; font-size: 0.9rem;">Shipping calculated at checkout</p>
-            </div>
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-              <a href="products.html" class="btn btn-secondary">Continue Shopping</a>
-              <a href="checkout.html" class="btn">Proceed to Checkout</a>
+        <div id="cart-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="cart-items">
+              <!-- Cart items will be populated by JavaScript -->
+            </tbody>
+          </table>
+
+          <div class="cart-summary">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+              <div>
+                <p style="font-size: 1.2rem; margin-bottom: 0.5rem;"><strong>Subtotal: <span id="cart-subtotal">$0.00</span></strong></p>
+                <p style="color: #64748b; font-size: 0.9rem;">Shipping calculated at checkout</p>
+              </div>
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button onclick="clearCart()" class="btn btn-secondary">Clear Cart</button>
+                <a href="checkout.html" class="btn">Proceed to Checkout</a>
+              </div>
             </div>
           </div>
         </div>
@@ -66,5 +70,91 @@
   <footer>
     <p>&copy; 2025 SatisfiesTech Store. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Load cart from localStorage
+    function loadCart() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartItems = document.getElementById('cart-items');
+      const cartEmpty = document.getElementById('cart-empty');
+      const cartContent = document.getElementById('cart-content');
+      
+      if (cart.length === 0) {
+        cartEmpty.style.display = 'block';
+        cartContent.style.display = 'none';
+        return;
+      }
+      
+      cartEmpty.style.display = 'none';
+      cartContent.style.display = 'block';
+      
+      cartItems.innerHTML = '';
+      let subtotal = 0;
+      
+      cart.forEach((item, index) => {
+        const price = parseFloat(item.price.replace('$', ''));
+        const total = price * item.quantity;
+        subtotal += total;
+        
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.name}</td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 0.5rem; justify-content: center;">
+              <button onclick="updateQuantity(${index}, -1)" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">-</button>
+              <span>${item.quantity}</span>
+              <button onclick="updateQuantity(${index}, 1)" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">+</button>
+            </div>
+          </td>
+          <td>${item.price}</td>
+          <td>$${total.toFixed(2)}</td>
+          <td>
+            <button onclick="removeItem(${index})" style="background: #ef4444; padding: 0.5rem; font-size: 0.8rem;">Remove</button>
+          </td>
+        `;
+        cartItems.appendChild(row);
+      });
+      
+      document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+    }
+    
+    // Update item quantity
+    function updateQuantity(index, change) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart[index].quantity += change;
+      
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      loadCart();
+    }
+    
+    // Remove item from cart
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      loadCart();
+    }
+    
+    // Clear entire cart
+    function clearCart() {
+      if (confirm('Are you sure you want to clear your cart?')) {
+        localStorage.removeItem('cart');
+        loadCart();
+      }
+    }
+    
+    // Mobile menu toggle
+    function toggleMenu() {
+      const nav = document.getElementById('nav-menu');
+      nav.classList.toggle('active');
+    }
+    
+    // Load cart on page load
+    loadCart();
+  </script>
 </body>
 </html>
