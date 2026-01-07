@@ -28,5 +28,5 @@ services:
 
 databases:
   - name: satisfiestech-db2
-    databaseName: ecommerce
-    user: ecommerce_user
+    databaseName: satisfiestech_db2
+    user: satisfiestech_db2_user
