@@ -7,14 +7,14 @@ services:
     envVars:
       - key: SPRING_DATASOURCE_URL
         fromDatabase:
-          name: satisfiestech-db2
+          name: satisfiestech-db
           property: connectionString
       - key: DATABASE_URL
-        value: jdbc:postgresql://dpg-d4qr03u3jp1c739mjicg-a.oregon-postgres.render.com:5432/satisfiestech_db2
+        value: jdbc:postgresql://dpg-d4qr03u3jp1c739mjicg-a.oregon-postgres.render.com:5432/satisfiestech_db
       - key: DATABASE_USERNAME
         value: satisfiestech_db_user
       - key: DATABASE_PASSWORD
-        value: owIUm9O5lPE34lC7f2zRKlmRtf7hSXp7
+        value: dy3onp1dsH0OcK7YTCMWmBQZ3H7LyK1Z
       - key: ADMIN_USERNAME
         value: admin
       - key: ADMIN_PASSWORD
