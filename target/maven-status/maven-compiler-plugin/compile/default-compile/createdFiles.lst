@@ -1,0 +1,8 @@
+com\satisfiestech\ecommerce\controller\UserController.class
+com\satisfiestech\ecommerce\model\User.class
+com\satisfiestech\ecommerce\repository\UserRepository.class
+com\satisfiestech\ecommerce\repository\ProductRepository.class
+com\satisfiestech\ecommerce\SatisfiestechApplication.class
+com\satisfiestech\ecommerce\controller\ProductController.class
+com\satisfiestech\ecommerce\config\SecurityConfig.class
+com\satisfiestech\ecommerce\model\Product.class

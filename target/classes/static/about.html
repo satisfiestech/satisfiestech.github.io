@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | SatisfiesTech Store</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>🛒 SatisfiesTech Store</h1>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <nav id="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container" style="padding: 3rem 1rem;">
+      <h1 style="text-align: center; margin-bottom: 1rem; color: #1e293b;">About SatisfiesTech Store</h1>
+      <p style="text-align: center; color: #64748b; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+        Your trusted destination for premium tech products and exceptional customer service
+      </p>
+
+      <div style="max-width: 800px; margin: 0 auto;">
+        <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 2rem;">
+          <h2 style="color: #1e293b; margin-bottom: 1rem;">🎯 Our Mission</h2>
+          <p style="color: #64748b; line-height: 1.8;">
+            At SatisfiesTech Store, we're committed to providing high-quality tech products that enhance your digital lifestyle. 
+            We carefully curate our selection to ensure every product meets our standards of excellence, innovation, and value.
+          </p>
+        </div>
+
+        <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 2rem;">
+          <h2 style="color: #1e293b; margin-bottom: 1rem;">💡 Why Choose Us</h2>
+          <ul style="color: #64748b; line-height: 2; list-style: none; padding: 0;">
+            <li>✅ <strong>Quality Guaranteed:</strong> Every product is tested and verified</li>
+            <li>✅ <strong>Fast Shipping:</strong> Free delivery on orders over $50</li>
+            <li>✅ <strong>Secure Payments:</strong> Industry-standard encryption</li>
+            <li>✅ <strong>Expert Support:</strong> 24/7 customer service team</li>
+            <li>✅ <strong>Easy Returns:</strong> 30-day hassle-free return policy</li>
+          </ul>
+        </div>
+
+        <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 2rem;">
+          <h2 style="color: #1e293b; margin-bottom: 1rem;">📞 Contact Us</h2>
+          <p style="color: #64748b; line-height: 1.8; margin-bottom: 1rem;">
+            Have questions? We're here to help!
+          </p>
+          <div style="color: #64748b; line-height: 2;">
+            <p>📧 Email: support@satisfiestech.com</p>
+            <p>📱 Phone: +1 (555) 123-4567</p>
+            <p>🕐 Hours: Monday - Friday, 9AM - 6PM EST</p>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+          <a href="products.html" class="btn" style="padding: 1rem 2rem;">Start Shopping</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SatisfiesTech Store. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    function toggleMenu() {
+      const nav = document.getElementById('nav-menu');
+      nav.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

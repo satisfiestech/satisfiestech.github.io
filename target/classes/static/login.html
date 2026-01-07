@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | SatisfiesTech Store</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>🛒 SatisfiesTech Store</h1>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <nav id="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container" style="padding: 3rem 1rem;">
+      <h1 style="text-align: center; margin-bottom: 1rem; color: #1e293b;">🔐 Login to Your Account</h1>
+      <p style="text-align: center; color: #64748b; margin-bottom: 2rem;">
+        Welcome back! Please login to continue shopping
+      </p>
+
+      <form id="login-form">
+        <h2 style="margin-bottom: 1.5rem; color: #374151; text-align: center;">Sign In</h2>
+        
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="your@email.com" required>
+        
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+            <input type="checkbox" id="remember"> Remember me
+          </label>
+          <a href="#" style="color: #667eea; text-decoration: none; font-size: 0.9rem;">Forgot password?</a>
+        </div>
+        
+        <button type="submit" style="width: 100%; padding: 1rem; margin-bottom: 1rem;">Login</button>
+        
+        <p style="text-align: center; color: #64748b; font-size: 0.9rem;">
+          Don't have an account? <a href="register.html" style="color: #667eea; text-decoration: none; font-weight: 600;">Sign up</a>
+        </p>
+      </form>
+
+      <div style="max-width: 500px; margin: 2rem auto; text-align: center;">
+        <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 1rem;">Or continue with</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <button class="btn btn-secondary" style="flex: 1; min-width: 150px;">
+            🔵 Google
+          </button>
+          <button class="btn btn-secondary" style="flex: 1; min-width: 150px;">
+            📘 Facebook
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SatisfiesTech Store. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Login form submission
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const remember = document.getElementById('remember').checked;
+      
+      // Store user session
+      localStorage.setItem('userEmail', email);
+      if (remember) {
+        localStorage.setItem('rememberMe', 'true');
+      }
+      
+      alert('Login successful! Welcome back.');
+      window.location.href = 'products.html';
+    });
+    
+    // Check if user is remembered
+    window.onload = function() {
+      if (localStorage.getItem('rememberMe') === 'true') {
+        const email = localStorage.getItem('userEmail');
+        if (email) {
+          document.getElementById('email').value = email;
+          document.getElementById('remember').checked = true;
+        }
+      }
+    };
+    
+    // Mobile menu toggle
+    function toggleMenu() {
+      const nav = document.getElementById('nav-menu');
+      nav.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

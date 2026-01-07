@@ -1,10 +1,28 @@
-*.log
-*.class
-node_modules/
-build/
-/target/
-
-# Environment variables with sensitive data
+# Environment variables
 .env
-*.env
-!.env.example
+.env.local
+.env.production
+
+# Config files
+config.json
+config.js
+secrets.json
+
+# API keys
+api-keys.txt
+credentials.json
+
+# Database
+*.db
+*.sqlite
+
+# Logs
+*.log
+logs/
+
+# Node modules (if using Node.js)
+node_modules/
+
+# OS generated files
+.DS_Store
+Thumbs.db
