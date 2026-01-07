@@ -11,18 +11,18 @@ services:
         value: prod
       - key: DATABASE_URL
         fromDatabase:
-          name: satisfiestech-db
+          name: satisfiestech-db2
           property: connectionString
       - key: DATABASE_USERNAME
         fromDatabase:
-          name: satisfiestech-db
+          name: satisfiestech-db2
           property: user
       - key: DATABASE_PASSWORD
         fromDatabase:
-          name: satisfiestech-db
+          name: satisfiestech-db2
           property: password
 
 databases:
-  - name: satisfiestech-db
+  - name: satisfiestech-db2
     databaseName: ecommerce
     user: ecommerce_user
