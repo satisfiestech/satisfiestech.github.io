@@ -21,6 +21,10 @@ services:
         fromDatabase:
           name: satisfiestech-db2
           property: password
+      - key: DATABASE_DRIVER
+        value: org.postgresql.Driver
+      - key: DATABASE_DIALECT
+        value: org.hibernate.dialect.PostgreSQLDialect
 
 databases:
   - name: satisfiestech-db2
