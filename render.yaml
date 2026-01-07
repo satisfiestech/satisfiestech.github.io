@@ -10,11 +10,11 @@ services:
           name: satisfiestech-db
           property: connectionString
       - key: DATABASE_URL
-        value: jdbc:postgresql://dpg-d4qr03u3jp1c739mjicg-a.oregon-postgres.render.com:5432/satisfiestech_db
+        value: jdbc:postgresql://dpg-d5f162i4d50c73ceaks0-a.oregon-postgres.render.com:5432/satisfiestech_db2
       - key: DATABASE_USERNAME
-        value: satisfiestech_db_user
+        value: satisfiestech_db2_user
       - key: DATABASE_PASSWORD
-        value: dy3onp1dsH0OcK7YTCMWmBQZ3H7LyK1Z
+        value: owIUm9O5lPE34lC7f2zRKlmRtf7hSXp7
       - key: ADMIN_USERNAME
         value: admin
       - key: ADMIN_PASSWORD
